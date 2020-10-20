@@ -1,5 +1,6 @@
 import random
 from random import randint
+import sys
 import time
 to_calc = []
 
@@ -22,6 +23,7 @@ while True:
 
 
 	print("To Start, Please Click Enter")
+	print("If you got here by mistake type anything except nothing and then click enter")
 	print("***" *7)
 	keyboard_type = input()
 	if keyboard_type == '':
@@ -40,8 +42,21 @@ while True:
 				except ValueError:
 					print("This is not a number!")
 				to_calc.append(keyboard_type)
-		else:
+	else:
+		print("BYEEEEEE!")
+		with open("log.txt", "r") as file:
+		latest = file.readline()
+		for latest in file:
 			pass
+
+		first = latest[0]
+		first = int(first)
+		write = first+1
+		f.open("log.txt", "a")
+		f.write(write + ") Project Closed with exit code 1")
+		f.close()
+		sys.exit(1)
+
 
 
 	print("Okay, Getting Your Average! Please Wait!")
@@ -49,22 +64,64 @@ while True:
 	average = 0
 	average = float(average)
 
+	# Here be Dramatic Effects...
 	for x in range (0,4):  
 		b = "Adding Your Numbers" + "." * x
 		print (b, end="\r")
 		time.sleep(1)
+	print("")
 
+
+
+	# CODE
 	for i in to_calc:
 		average += i
 		average = float(average)
 
+
+
+
+	# Here be Dramatic Effects...
 	for x in range (0,4):  
 		b = "Dividing Your Numbers" + "." * x
 		print (b, end="\r")
 		time.sleep(1)
+	print("")
 
+
+
+	# CODE
 	average /= len(to_calc)
+
+
+
+
+	# Here be Dramatic Effects...
+	for x in range (0,4):  
+		b = "Writing to Log" + "." * x
+		print (b, end="\r")
+		time.sleep(1)
+	print("")
+
+
+
+	#CODE
+	with open("log.txt", "r") as file:
+		latest = file.readline()
+		for latest in file:
+			pass
+
+	first = latest[0]
+	first = int(first)
+	write = first+1
+
+	average = str(average)
+	write = str(write)
+
+	f = open("log.txt", "a")
+	f.write("\n" + write + ") The Number was " + average)
+	f.close()
 
 	average = str(average)
 	print("Your Average is... " + average + "!")
-	break
+	sys.exit(0)
