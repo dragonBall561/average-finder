@@ -23,7 +23,9 @@ while True:
 
 
 	print("To Start, Please Click Enter")
-	print("If you got here by mistake type anything except nothing and then click enter")
+	print("To View the log, please write 'log' then click enter")
+	print("If you got here by mistake type anything except log or nothing and then click enter")
+	
 	print("***" *7)
 	keyboard_type = input()
 	if keyboard_type == '':
@@ -41,19 +43,59 @@ while True:
 					keyboard_type = float(keyboard_type)
 				except ValueError:
 					print("This is not a number!")
-				to_calc.append(keyboard_type)
-	else:
-		print("BYEEEEEE!")
+					to_calc.append(keyboard_type)
+	elif keyboard_type == 'log':
+		print("***" *7)	
+		f = open("log.txt")
+		lines = f.readlines()
+		for line in lines:
+			print(line)
+		f.close()
+		
+		f = open("log.txt", "a")
+		# Log Writing
+		# Getting Latest Entry
 		with open("log.txt", "r") as file:
-		latest = file.readline()
-		for latest in file:
-			pass
+			latest = file.readline()
+			for latest in file:
+				pass
 
+		# Adding 1
 		first = latest[0]
 		first = int(first)
 		write = first+1
-		f.open("log.txt", "a")
-		f.write(write + ") Project Closed with exit code 1")
+
+		#Back to `str`
+		write = str(write)
+
+		#Log Time
+		f = open("log.txt", "a")
+		f.write(write + ") You have viewed the log now you are done! \n")
+		f.close()
+		sys.exit(1)
+
+
+	else:
+		print("BYEEEEEE!")
+
+		# Log Writing
+		# Getting Latest Entry
+		with open("log.txt", "r") as file:
+			latest = file.readline()
+			for latest in file:
+				pass
+
+		# Adding 1
+		first = latest[0]
+		first = int(first)
+		write = first+1
+
+		#Back to `str`
+		write = str(write)
+
+		#Log Time
+		f = open("log.txt", "a")
+		f.write(write + ") Project Closed with exit code 1 \n")
 		f.close()
 		sys.exit(1)
 
@@ -119,7 +161,7 @@ while True:
 	write = str(write)
 
 	f = open("log.txt", "a")
-	f.write("\n" + write + ") The Number was " + average)
+	f.write(write + ") Success! The Number was " + average + "\n")
 	f.close()
 
 	average = str(average)
