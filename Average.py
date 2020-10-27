@@ -141,7 +141,7 @@ while True:
 
 	#CODE
 	average = str(average)
-	log("The Number Was " + average)
+	log("The Average Was " + average)
 
 
 	print("Your Average is... " + average + "!")
