@@ -1,5 +1,5 @@
 # Average Finder
-Finds the Average of Al Numbers Given. Written in Python
+Finds the Average of all Numbers Given. Written in Python
 
 # How to Run
 ## Linux: 

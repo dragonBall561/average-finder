@@ -1,1 +1,4 @@
-0 # DO NOT REMOVE THIS LINE
+0 #DO NOT REMOVE THIS LINE UNTIL THERE IS A FIRST ENTRY!
+1)The Number Was 2.0
+2)Log has Been Viewed
+3)You exited the program

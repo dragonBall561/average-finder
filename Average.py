@@ -4,6 +4,29 @@ import sys
 import time
 to_calc = []
 
+
+def log(towrite):
+	#Getting The First Number
+	with open("log.txt", "r") as f:
+		latest = f.readline()
+		for latest in f:
+			pass
+	first = latest[0]
+
+	# Adding 1
+	try:
+		first = int(first)
+	except ValueError:
+		print("Something Went Wrong. Check the log.txt file to make sure that the first character of the last line is a number.")
+	
+	numb = first+1
+	numb = str(numb)
+
+	#Log Time
+	f = open("log.txt", "a")
+	f.write(numb + ")" + towrite + "\n")
+	f.close()
+
 while True:
 	print("Hello, Welcome to...")
 
@@ -28,6 +51,9 @@ while True:
 	
 	print("***" *7)
 	keyboard_type = input()
+
+
+	# Program
 	if keyboard_type == '':
 		while True:
 			print("Please type your number, then click enter.") 
@@ -43,7 +69,10 @@ while True:
 					keyboard_type = float(keyboard_type)
 				except ValueError:
 					print("This is not a number!")
-					to_calc.append(keyboard_type)
+				to_calc.append(keyboard_type)
+
+
+	# View the log
 	elif keyboard_type == 'log':
 		print("***" *7)	
 		f = open("log.txt")
@@ -51,60 +80,24 @@ while True:
 		for line in lines:
 			print(line)
 		f.close()
-		
-		f = open("log.txt", "a")
-		# Log Writing
-		# Getting Latest Entry
-		with open("log.txt", "r") as file:
-			latest = file.readline()
-			for latest in file:
-				pass
+		log("Log has Been Viewed")
+		sys.exit(0)
 
-		# Adding 1
-		first = latest[0]
-		first = int(first)
-		write = first+1
-
-		#Back to `str`
-		write = str(write)
-
-		#Log Time
-		f = open("log.txt", "a")
-		f.write(write + ") You have viewed the log now you are done! \n")
-		f.close()
-		sys.exit(1)
-
-
+	#Exit
 	else:
 		print("BYEEEEEE!")
-
-		# Log Writing
-		# Getting Latest Entry
-		with open("log.txt", "r") as file:
-			latest = file.readline()
-			for latest in file:
-				pass
-
-		# Adding 1
-		first = latest[0]
-		first = int(first)
-		write = first+1
-
-		#Back to `str`
-		write = str(write)
-
-		#Log Time
-		f = open("log.txt", "a")
-		f.write(write + ") Project Closed with exit code 1 \n")
-		f.close()
-		sys.exit(1)
+		log("You exited the program")
+		sys.exit(0)
 
 
 
+	# Program Finish
 	print("Okay, Getting Your Average! Please Wait!")
 	# Put time thing here
 	average = 0
 	average = float(average)
+
+
 
 	# Here be Dramatic Effects...
 	for x in range (0,4):  
@@ -137,7 +130,6 @@ while True:
 
 
 
-
 	# Here be Dramatic Effects...
 	for x in range (0,4):  
 		b = "Writing to Log" + "." * x
@@ -148,22 +140,9 @@ while True:
 
 
 	#CODE
-	with open("log.txt", "r") as file:
-		latest = file.readline()
-		for latest in file:
-			pass
-
-	first = latest[0]
-	first = int(first)
-	write = first+1
-
 	average = str(average)
-	write = str(write)
+	log("The Number Was " + average)
 
-	f = open("log.txt", "a")
-	f.write(write + ") Success! The Number was " + average + "\n")
-	f.close()
 
-	average = str(average)
 	print("Your Average is... " + average + "!")
 	sys.exit(0)
