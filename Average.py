@@ -27,9 +27,29 @@ def log(towrite):
 	f.write(numb + ") " + towrite + "\n")
 	f.close()
 
+def rm_zero():
+	with open("log.txt", "r") as f:
+		lines = f.readlines()
+		first = lines[0]
+		delfirstline = True
+		try:
+			second = lines[1]
+		except IndexError:
+			delfirstline = False
+
+		if (delfirstline == True) and (lines[0] == ("0" + "\n")):
+			with open('log.txt', 'r') as f:
+				data = f.read().splitlines(True)
+			with open('log.txt', 'w') as f:
+				f.writelines(data[1:])
+			pass
+		else:
+			pass
+
 
 # Start Program
 while True:
+	rm_zero()
 	print("Hello, Welcome to...")
 
 	print("                   ____   ____              _____       ____   ")
@@ -84,22 +104,25 @@ while True:
 	elif keyboard_type == '2':
 		print("***" *7)	
 		log("The Log Was Viewed")
+		rm_zero()
 		f = open("log.txt")
 		lines = list(f)
 		for line in lines:
 			print(line, end="\r")
-		break
+		sys.exit(0)
 
 	#Exit
 	elif keyboard_type == '3':
 		print("BYEEEEEE!")
 		log("You exited the program")
-		break
+		rm_zero()
+		sys.exit(0)
 
 	else:
 		print("Not A Valid Choice")
 		print("Exiting the Program")
 		log("You Made An Invalid Choice")
+		rm_zero()
 		sys.exit(0)
 
 
@@ -158,23 +181,5 @@ while True:
 
 
 	print("Your Average is... " + average + "!")
-	break
-
-# Some Log Stuff Here
-with open("log.txt", "r") as f:
-	lines = f.readlines()
-	first = lines[0]
-	delfirstline = True
-	try:
-		second = lines[1]
-	except IndexError:
-		delfirstline = False
-	
-	if (delfirstline == True) and (lines[0] == ("0" + "\n")):
-		with open('log.txt', 'r') as f:
-			data = f.read().splitlines(True)
-		with open('log.txt', 'w') as f:
-			f.writelines(data[1:])
-		pass
-	else:
-		pass
+	rm_zero()
+	sys.exit(0)
