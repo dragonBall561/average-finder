@@ -5,6 +5,7 @@ import time
 to_calc = []
 
 
+
 def log(towrite):
 	#Getting The First Number
 	with open("log.txt", "r") as f:
@@ -12,21 +13,22 @@ def log(towrite):
 		for latest in f:
 			pass
 	first = latest[0]
-
 	# Adding 1
 	try:
 		first = int(first)
 	except ValueError:
 		print("Something Went Wrong. Check the log.txt file to make sure that the first character of the last line is a number.")
-	
 	numb = first+1
 	numb = str(numb)
 
+
 	#Log Time
 	f = open("log.txt", "a")
-	f.write(numb + ")" + towrite + "\n")
+	f.write(numb + ") " + towrite + "\n")
 	f.close()
 
+
+# Start Program
 while True:
 	print("Hello, Welcome to...")
 
@@ -45,16 +47,22 @@ while True:
 	print(" /         ___/___    /    |/    /_____/    /____   /      |   ")
 
 
-	print("To Start, Please Click Enter")
-	print("To View the log, please write 'log' then click enter")
-	print("If you got here by mistake type anything except log or nothing and then click enter")
-	
+
+	print("Welcome to the Main Menu!")
+	print("You have 3 Choices:")
+	print("")
+	print("1) Start")
+	print("2) View the Log")
+	print("3) Exit the Program")
+	print("")
+	print("To Select an Option, Please Click the Number and Click Enter")
+	print("For Example, to Start the Program, Press '1' Then 'Enter'")
 	print("***" *7)
 	keyboard_type = input()
 
 
 	# Program
-	if keyboard_type == '':
+	if keyboard_type == '1':
 		while True:
 			print("Please type your number, then click enter.") 
 			print("When you are done, type '00', then click enter")
@@ -73,20 +81,25 @@ while True:
 
 
 	# View the log
-	elif keyboard_type == 'log':
+	elif keyboard_type == '2':
 		print("***" *7)	
+		log("The Log Was Viewed")
 		f = open("log.txt")
-		lines = f.readlines()
+		lines = list(f)
 		for line in lines:
-			print(line)
-		f.close()
-		log("Log has Been Viewed")
-		sys.exit(0)
+			print(line, end="\r")
+		break
 
 	#Exit
-	else:
+	elif keyboard_type == '3':
 		print("BYEEEEEE!")
 		log("You exited the program")
+		break
+
+	else:
+		print("Not A Valid Choice")
+		print("Exiting the Program")
+		log("You Made An Invalid Choice")
 		sys.exit(0)
 
 
@@ -145,4 +158,23 @@ while True:
 
 
 	print("Your Average is... " + average + "!")
-	sys.exit(0)
+	break
+
+# Some Log Stuff Here
+with open("log.txt", "r") as f:
+	lines = f.readlines()
+	first = lines[0]
+	delfirstline = True
+	try:
+		second = lines[1]
+	except IndexError:
+		delfirstline = False
+	
+	if (delfirstline == True) and (lines[0] == ("0" + "\n")):
+		with open('log.txt', 'r') as f:
+			data = f.read().splitlines(True)
+		with open('log.txt', 'w') as f:
+			f.writelines(data[1:])
+		pass
+	else:
+		pass
